@@ -1,0 +1,8 @@
+div#box {
+    width: 8rem;
+    height: 8rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgba(253, 37, 242, 0.825);
+    display: inline-block;
+}
