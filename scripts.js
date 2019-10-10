@@ -5,18 +5,21 @@ function button() {
     button.className = 'button';
     button.appendChild(btnText);
     document.body.appendChild(button);
+
+    let boxDiv = document.createElement('div')
+    document.body.appendChild(boxDiv);
+
     let id = 0;
 
     document.getElementsByClassName('button')[0].addEventListener('click', function () {
         let square = document.createElement('div');
-        document.body.appendChild(square);
+        boxDiv.appendChild(square);
         square.id = id++;
-        square.className = 'boxColor';
+        square.className = 'box';
         let p = document.createElement('p');
         let squareText = document.createTextNode(id);
         p.appendChild(squareText);
         square.appendChild(p);
-        document.body.appendChild(square);
         p.style.opacity = '0';
 
         square.addEventListener('mouseenter', hover);
@@ -36,14 +39,26 @@ function button() {
 
         square.addEventListener('dblclick', function () {
             if (square.id % 2 === 0) {
-                square.previousSibling.remove();
+                if (square.previousSibling === null) {
+                    Swal.fire(
+                        'There is no previous square!',
+                        )
+                } else {
+                    square.previousSibling.remove();
+                }
             } else {
-                square.nextSibling.remove();
+                if (square.nextSibling === null) {
+                    Swal.fire(
+                        'There is no next square!',
+                        )
+                } else {
+                    square.nextSibling.remove();
+                }
             }
-            
 
-            
         });
+
+        
     });
 
     function getRandomColor() {
